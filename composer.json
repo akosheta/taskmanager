@@ -1,0 +1,16 @@
+{
+    "name": "akosheta/7todo",
+    "description": "A simple task manager (whit PHP, Ajax and MySQL)",
+    "type": "project",
+    "require": {
+        "hekmatinasser/verta": "8.2"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "akosheta",
+            "email": "aw.sheta@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable"
+}
