@@ -1,3 +1,3 @@
 <?php
 
-define('SITE_TITLE', '7Task Manager');
+define('SITE_TITLE', 'Task Manager');
