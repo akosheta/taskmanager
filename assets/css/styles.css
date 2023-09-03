@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Dosis:300|Lato:300,400,600,700|Roboto+Condensed:300,700|Open+Sans+Condensed:300,600|Open+Sans:400,300,600,700|Maven+Pro:400,700");
 @import url("https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
+/* @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"); */
 html {
   background-image: url("../img/background.webp");
   background-size: cover;
@@ -60,8 +61,8 @@ body {
   float: right;
   line-height: 40px;
   padding: 0px 20px;
-  font-weight: 600;
-  font-size: 1.0em;
+  font-weight: 300;
+  font-size: larger;
 }
 .pageHeader .userPanel img {
   float: right;
@@ -111,7 +112,8 @@ body {
 .main .nav .menu {
   width: 100%;
   margin: 15px;
-  color: #555;
+  /* color: #2a2121; */
+  position: relative;
 }
 .main .nav .menu .title {
   font-weight: 700;
@@ -122,6 +124,7 @@ body {
   padding-left: 0px;
 }
 .main .nav .menu ul li {
+  marker: none;
   cursor: pointer;
   list-style: none;
   margin: 5px 0px;
@@ -137,12 +140,11 @@ body {
 .main .nav .menu ul li.active {
   color: #79BC46;
 }
-.main .nav .menu ul li:hover {
+/* .main .nav .menu ul li:hover {
   background-color: #999;
-}
+} */
 .main .nav .menu ul li i {
   font-size: 1.4em;
-  margin-right: 10px;
 }
 .main .view {
   position: relative;
@@ -151,7 +153,7 @@ body {
 .main .view .viewHeader {
   width: 100%;
   height: 70px;
-  line-height: 70px;
+  /* line-height: 70px; */
   padding: 20px 20px;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -164,7 +166,7 @@ body {
   font-weight: 400;
   padding: 0px;
   color: #AAA;
-  margin-top: -18px;
+  margin-top: 0px;
 }
 .main .view .viewHeader .functions {
   float: right;
@@ -188,12 +190,13 @@ body {
 }
 .main .view .viewHeader .functions .button.inverz {
   background-color: inherit;
-  border: 1px solid #AAA;
+  /* border: 1px solid #AAA; */
   width: 10px;
   color: #AAA;
-  font-size: 1.3em;
+  font-size: 1.4em;
   padding-left: 10px;
   padding-right: 16px;
+  padding-top: 3px;
 }
 .main .view .content {
   position: absolute;
@@ -262,9 +265,58 @@ body {
   font-weight: 700;
 }
 .main .view .content .list ul li .info .button.green {
-  background-color: #85C157;
+  background-color: #62d256;
 }
 
 .clear {
   clear: both;
+}
+
+.new-folder-input {
+  margin-left: 20px;
+  width: 75%;
+  font-family: "Cascadia";
+  border-radius: 4px;
+  padding: 5px;
+  border: white;
+  height: 22px;
+  font-size: medium;
+  font-weight: 300;
+}
+
+.new-folder-btn {
+    font-family: cascadia;
+    font-size: medium;
+    position: relative;
+    margin-left: 93px;
+    margin-top: 6px;
+    padding: 4px;
+    width: 43%;
+    background-color: #54b9cd;
+    color: white;
+    border: 0px;
+    border-radius: 4px;
+}
+.folder-a{
+  background-color: ;
+  text-decoration: none;
+  marker: none;
+  color: #0da2e0;
+  margin-left: 5px;
+  /* margin-right: -72px; */
+  width: fit-content;
+}
+.folder-a:hover{
+  text-decoration: underline;
+}
+.fa-folder{
+  float: left;
+}
+.folder-delete .fa-trash-o{
+  color: #d92121 !important;
+  float: right;
+  /* margin-left: 29px; */
+}
+.fa-trash-o:hover{
+  font-weight: 600;
 }

@@ -16,4 +16,5 @@ try {
 }
 
 include "./libs/lib-auth.php";
+include "./libs/lib-folders.php";
 include "./libs/lib-tasks.php";

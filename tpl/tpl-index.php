@@ -2,8 +2,8 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title><?=SITE_TITLE?> </title>
-  <link rel="stylesheet" href="assets/css/style.css">
+  <title><?=SITE_TITLE?></title>
+  <link rel="stylesheet" href="../assets/css/styles.css" type="text/css">
 
 </head>
 <body>
@@ -11,7 +11,8 @@
 <div class="page">
   <div class="pageHeader">
     <div class="title">Dashboard</div>
-    <div class="userPanel"><i class="fa fa-chevron-down"></i><span class="username">John Doe </span><img src="https://s3.amazonaws.com/uifaces/faces/twitter/kolage/73.jpg" width="40" height="40"/></div>
+    <div class="userPanel"><i class="fa fa-chevron-down"></i><span class="username">akosheta</span>
+    <img src="../assets/img/profile.jpg" width="40" height="40"/></div>
   </div>
   <div class="main">
     <div class="nav">
@@ -21,13 +22,23 @@
         </div>
       </div>
       <div class="menu">
-        <div class="title">Navigation</div>
+        <div class="title">Folders</div>
         <ul>
-          <li> <i class="fa fa-home"></i>Home</li>
-          <li><i class="fa fa-signal"></i>Activity</li>
-          <li class="active"> <i class="fa fa-tasks"></i>Manage Tasks</li>
-          <li> <i class="fa fa-envelope"></i>Messages</li>
+          <?php foreach ($folders as $folder): ?>
+          <li>
+            <a href="?folder_id=<?= $folder->id ?>" class="folder-a"><i class="fa fa-folder"></i><?= $folder->name ?></a>
+            <a href="?delete_folder=<?= $folder->id ?>" class="folder-delete"><i class="fa fa-trash-o"></i></a>
+          </li>
+          <?php endforeach; ?>
+          <!-- <li> <i class="fa fa-folder"></i>Folder</li>
+          <li class="active"> <i class="fa fa-folder-open"></i>Folder</li> -->
         </ul>
+      </div>
+      <div class="add-folder">
+        <div>
+          <input class="new-folder-input" type="text" placeholder="Add New Folder"/>
+          <button class="new-folder-btn">Add Folder</button>
+        </div>
       </div>
     </div>
     <div class="view">
@@ -71,7 +82,7 @@
   </div>
 </div>
 <!-- partial -->
-  <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script><script  src="./assets/js/script.js"></script>
-
+  <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+  <script  src="../assets/js/script.js"></script>
 </body>
 </html>
