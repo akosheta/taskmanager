@@ -1,5 +1,13 @@
 <?php
 
+// Firs syntax to not allow permission on improtant file
+/*if (!defined('BASE_PATH')) {
+    echo "Permission Denied!";
+    die();
+}*/
+// Second syntax to not allow permission on improtant file
+defined("BASE_PATH") or die("Permission Denied!");
+
 function isAjaxRequest(){
     if (!empty($_SERVER["HTTP_X_REQUESTED_WITH"]) && strtolower($_SERVER["HTTP_X_REQUESTED_WITH"]) == "xmlhttprequest") {
         return true;

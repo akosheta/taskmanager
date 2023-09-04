@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 include "../bootstrap/init.php";
 if(!isAjaxRequest()){

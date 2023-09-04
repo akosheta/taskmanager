@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 define('SITE_TITLE', 'Task Manager');
 define('BASE_URL', 'http://7todo/');
