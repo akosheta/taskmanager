@@ -16,13 +16,6 @@ function getFolders()
     return $result;
 }
 
-function addFolder() 
-{
-    global $pdo;
-    $sql = "INSERT INTO folders(name,user_id) values (?,?)";
-    $pdo->prepare($sql, );
-}
-
 function removeFolder(int $folderId)
 {
     global $pdo;
@@ -34,3 +27,24 @@ function removeFolder(int $folderId)
     $rowCount = $stmt->rowCount();
     return $rowCount;
 }
+
+function addFolder($folderName) 
+{
+    global $pdo;
+    $folders = getFolders();
+    sleep(2);
+    foreach ($folders as $folder) {
+        if ($folder->name == $folderName){
+           return "$folderName folder already exists";
+           die();
+        }
+    }
+    $currentUserId = getCurrentUserId();
+    $sql = "INSERT INTO folders (name,user_id) VALUES (:folderName,:userId)";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([":folderName" => "$folderName",":userId" => $currentUserId]);
+    // echo "Folder $folderName successfully add";
+    return $stmt->rowCount();
+}
+
+

@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <title><?=SITE_TITLE?></title>
   <link rel="stylesheet" href="../assets/css/styles.css" type="text/css">
-
 </head>
 <body>
 <!-- partial:index.partial.html -->
@@ -23,7 +22,7 @@
       </div>
       <div class="menu">
         <div class="title">Folders</div>
-        <ul>
+        <ul class="folder-list">
           <?php foreach ($folders as $folder): ?>
           <li>
             <a href="?folder_id=<?= $folder->id ?>" class="folder-a"><i class="fa fa-folder"></i><?= $folder->name ?></a>
@@ -84,5 +83,24 @@
 <!-- partial -->
   <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
   <script  src="../assets/js/script.js"></script>
+  <script>
+    $(document).ready(function() {
+      $(".new-folder-btn").click(function(e){
+        var newFolderinput = $(".new-folder-input");
+        $.ajax({
+          url: "../proccess/ajaxHandler.php" ,
+          method: "POST",
+          data: {action: "addfolder" ,input: newFolderinput.val()},
+          success: function(response){
+            if (response == "1") {
+              $('<li><a href="?folder_id=<?=$folder->id?>" class="folder-a"><i class="fa fa-folder"></i>'+newFolderinput.val()+'</a><a href="?delete_folder=<?=$folder->id?>" class="folder-delete"><i class="fa fa-trash-o"></i></a></li>').appendTo("ul.folder-list");
+            }else{
+              alert(response);
+            }
+          }
+        });
+      });
+    });
+  </script>
 </body>
 </html>
