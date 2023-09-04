@@ -297,6 +297,10 @@ body {
     border: 0px;
     border-radius: 4px;
 }
+.new-folder-btn:hover{
+  cursor: pointer;
+  background-color: #62d256;
+}
 .folder-a{
   background-color: ;
   text-decoration: none;
