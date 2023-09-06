@@ -39,11 +39,13 @@ function addFolder($folderName)
            die();
         }
     }
+    if (folderNameValidation($folderName)) {
+        return "Please select a valid Folder name";
+    }
     $currentUserId = getCurrentUserId();
     $sql = "INSERT INTO folders (name,user_id) VALUES (:folderName,:userId)";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([":folderName" => "$folderName",":userId" => $currentUserId]);
-    // echo "Folder $folderName successfully add";
     return $stmt->rowCount();
 }
 

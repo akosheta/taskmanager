@@ -16,17 +16,16 @@ function isAjaxRequest(){
 }
 
 function diepage($msg){
-    return "<div style='color: red; background-color: #fcebed; padding: 40px; margin: 50px auto; width: 70%; border: 2px solid palevioletred; border-radius: 8px;font-size: large'>$msg</div";
+    echo "<div style='color: red; background-color: #fcebed; padding: 40px; margin: 50px auto; width: 70%; border: 2px solid palevioletred; border-radius: 8px;font-size: large'>".$msg."</div>";
     die();
 }
 
 function folderNameValidation(string $folderName) : bool {
     $validName = trim($folderName);
-    if (strlen($validName) == 0) {
-        echo "Invalid Folder name";
-        return false;
-    } else {
+    if (!strlen($validName) == 0) {
         return true;
+    } else {
+        return false;
     }
     
 }

@@ -12,7 +12,7 @@ $pass = $database_config["password"];
 try {
     $pdo = new PDO($dsn, $user, $pass);
 } catch (PDOException $e) {
-   echo diepage("Connection failed, Error: " . $e->getMessage());
+    diepage("Connection failed, Error: " . $e->getMessage());
 }
 
 include BASE_PATH . "/libs/lib-auth.php";
