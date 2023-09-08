@@ -2,4 +2,10 @@
 
 function getTasks(){
     global $pdo;
+    $userId = getCurrentUserId();
+    $sql = "SELECT * FROM tasks WHERE user_id = $userId";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    $records = $stmt->fetchAll(PDO::FETCH_OBJ);
+    return $records;
 }

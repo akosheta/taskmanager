@@ -53,19 +53,25 @@
         <div class="list">
           <div class="title">Today</div>
           <ul>
-            <li class="checked"><i class="fa fa-check-square-o"></i><span>Update team page</span>
-              <div class="info">
-                <div class="button green">In progress</div><span>Complete by 25/04/2014</span>
-              </div>
-            </li>
-            <li><i class="fa fa-square-o"></i><span>Design a new logo</span>
+            <?php foreach($tasks as $task): ?>
+              <li class="<?= $task->is_done ? 'checked' : '' ; ?>">
+                <i class="<?= $task->is_done ? 'fa fa-check-square-o': 'fa fa-square-o'; ?>"></i>
+                <span class="task-title"><?= $task->title ?></span>
+                <span class="task-body"><?= $task->body ?></span>
+                <div class="info">
+                  <div class="<?= $task->is_done ? 'button green' : 'button'; ?> "><?= $task->is_done ? 'Completed' : 'Pending';  ?></div>
+                  <span>Complete by <?=$task->end_at ?></span>
+                </div>
+              </li>
+            <?php endforeach; ?>
+            <!-- <li><i class="fa fa-square-o"></i><span>Design a new logo</span>
               <div class="info">
                 <div class="button">Pending</div><span>Complete by 10/04/2014</span>
               </div>
             </li>
             <li><i class="fa fa-square-o"></i><span>Find a front end developer</span>
               <div class="info"></div>
-            </li>
+            </li> -->
           </ul>
         </div>
         <div class="list">

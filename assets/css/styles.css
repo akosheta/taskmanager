@@ -158,7 +158,7 @@ body {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  border-bottom: 1px solid #E0E0E0;
+  border-bottom: 3px solid #E0E0E0;
 }
 .main .view .viewHeader .title {
   float: left;
@@ -260,7 +260,6 @@ body {
   border-radius: 4px;
   margin: 10px 10px;
   text-align: center;
-  cursor: pointer;
   color: White;
   font-weight: 700;
 }
@@ -285,7 +284,7 @@ body {
 }
 
 .new-folder-btn {
-    font-family: cascadia;
+    font-family: Cascadia;
     font-size: medium;
     position: relative;
     margin-left: 93px;
@@ -323,4 +322,17 @@ body {
 }
 .fa-trash-o:hover{
   font-weight: 600;
+}
+.task-title {
+  font-family: Cascadia;
+  font-size: 19px;
+  color: black;
+  margin-left: -1px;
+  width: 26%;
+}
+.task-body {
+  font-size: 16px;
+  margin-left: 5px;
+  color: #19a4dee3;
+  width: 36%;
 }

@@ -29,3 +29,9 @@ function folderNameValidation(string $folderName) : bool {
     }
     
 }
+
+function dd(mixed $var){
+    echo "<pre style='color: #f8bf7b; background-color: cadetblue; position: relative; z-index: 111; padding: 20px 24px; margin: 523px; border-left: 6px solid darkblue; border-radius: 7px;'>";
+    print_r($var);
+    echo "</pre>";
+}
