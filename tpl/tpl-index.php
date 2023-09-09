@@ -26,7 +26,7 @@
           <?php foreach ($folders as $folder): ?>
           <li>
             <a href="?folder_id=<?= $folder->id ?>" class="folder-a"><i class="fa fa-folder"></i><?= $folder->name ?></a>
-            <a href="?delete_folder=<?= $folder->id ?>" class="folder-delete"><i class="fa fa-trash-o"></i></a>
+            <a href="?delete_folder=<?= $folder->id ?>" class="folder-delete" onclick="return confirm('Are you sure to delete <?= $folder->name ?> folder and all tasks related?')"><i class="fa fa-trash-o"></i></a>
           </li>
           <?php endforeach; ?>
           <!-- <li> <i class="fa fa-folder"></i>Folder</li>
@@ -63,10 +63,10 @@
                 <span class="task-body"><?= $task->body ?></span>
                 <div class="info">
                   <div class="<?= $task->is_done ? 'button green' : 'button'; ?> "><?= $task->is_done ? 'Completed' : 'Pending';  ?></div>
-                  <span><?=$task->is_done ? "Complete by $task->end_at": '' ; ?></span>
+                  <span><?=$task->is_done ? "Complete by $task->end_at": "Created at $task->created_at" ; ?></span>
                 </div>
                 <div class="delete-task">
-                  <a href="?delete_task=<?= $task->id ?>"><i class="fa fa-trash-o"></i></a>
+                  <a href="?delete_task=<?= $task->id ?>" onclick="return confirm('Are you sure to delete this task?\n<?= $task->title ?>')"><i class="fa fa-trash-o"></i></a>
                 </div>
               </li>
             <?php endforeach; ?>
