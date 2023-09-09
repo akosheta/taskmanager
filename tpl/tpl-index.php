@@ -36,22 +36,25 @@
       <div class="add-folder">
         <div>
           <input class="new-folder-input" type="text" placeholder="Add New Folder"/>
-          <button class="new-folder-btn">Add Folder</button>
+          <button class="new-folder-btn">Add</button>
         </div>
       </div>
     </div>
     <div class="view">
-      <div class="viewHeader">
+      <!-- <div class="viewHeader">
         <div class="title">Manage Tasks</div>
         <div class="functions">
           <div class="button active">Add New Task</div>
           <div class="button">Completed</div>
           <div class="button inverz"><i class="fa fa-trash-o"></i></div>
         </div>
-      </div>
+      </div> -->
       <div class="content">
         <div class="list">
           <div class="title">Today</div>
+          <div class="functions">
+            <div class="button active">Add New Task</div>
+          </div>
           <ul>
             <?php foreach($tasks as $task): ?>
               <li class="<?= $task->is_done ? 'checked' : '' ; ?>">
@@ -60,7 +63,10 @@
                 <span class="task-body"><?= $task->body ?></span>
                 <div class="info">
                   <div class="<?= $task->is_done ? 'button green' : 'button'; ?> "><?= $task->is_done ? 'Completed' : 'Pending';  ?></div>
-                  <span>Complete by <?=$task->end_at ?></span>
+                  <span><?=$task->is_done ? "Complete by $task->end_at": '' ; ?></span>
+                </div>
+                <div class="delete-task">
+                  <a href="?delete_task=<?= $task->id ?>"><i class="fa fa-trash-o"></i></a>
                 </div>
               </li>
             <?php endforeach; ?>
@@ -74,14 +80,14 @@
             </li> -->
           </ul>
         </div>
-        <div class="list">
+        <!-- <div class="list">
           <div class="title">Tomorrow</div>
           <ul>
             <li><i class="fa fa-square-o"></i><span>Find front end developer</span>
               <div class="info"></div>
             </li>
           </ul>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>

@@ -39,7 +39,7 @@ function addFolder($folderName)
            die();
         }
     }
-    if (folderNameValidation($folderName)) {
+    if (!folderNameValidation($folderName)) {
         return "Please select a valid Folder name";
     }
     $currentUserId = getCurrentUserId();
