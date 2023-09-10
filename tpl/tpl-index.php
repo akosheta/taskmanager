@@ -23,14 +23,17 @@
       <div class="menu">
         <div class="title">Folders</div>
         <ul class="folder-list">
+          <li class="<?=!isset($_GET['folder_id']) ? 'active' : ''; ?>">
+            <a href="<?=BASE_URL?>" class="folder-a"><i class="<?= !isset($_GET['folder_id']) ? 'fa fa-folder-open': 'fa fa-folder' ; ?>"></i>All Tasks</a>
+          </li>
           <?php foreach ($folders as $folder): ?>
-          <li>
-            <a href="?folder_id=<?= $folder->id ?>" class="folder-a"><i class="fa fa-folder"></i><?= $folder->name ?></a>
+          <li class="<?php if (isset($_GET['folder_id']) && $_GET['folder_id'] == $folder->id){echo 'active';}?>">
+            <a href="?folder_id=<?= $folder->id ?>" class="folder-a"><i class="<?php if (isset($_GET['folder_id']) && $_GET['folder_id'] == $folder->id){echo 'fa fa-folder-open';}else{echo 'fa fa-folder';}?>"></i><?= $folder->name ?></a>
             <a href="?delete_folder=<?= $folder->id ?>" class="folder-delete" onclick="return confirm('Are you sure to delete <?= $folder->name ?> folder and all tasks related?')"><i class="fa fa-trash-o"></i></a>
           </li>
           <?php endforeach; ?>
-          <!-- <li> <i class="fa fa-folder"></i>Folder</li>
-          <li class="active"> <i class="fa fa-folder-open"></i>Folder</li> -->
+          
+          <!-- <li> <i class="fa fa-folder"></i>Folder</li> -->
         </ul>
       </div>
       <div class="add-folder">
@@ -51,11 +54,12 @@
       </div> -->
       <div class="content">
         <div class="list">
-          <div class="title">Today</div>
+          <div class="title"><?= isset($_GET["folder_id"]) ? "Tasks" : "All tasks" ; ?></div>
           <div class="functions">
             <div class="button active">Add New Task</div>
           </div>
           <ul>
+            <?php if(sizeof($tasks)): ?>
             <?php foreach($tasks as $task): ?>
               <li class="<?= $task->is_done ? 'checked' : '' ; ?>">
                 <i class="<?= $task->is_done ? 'fa fa-check-square-o': 'fa fa-square-o'; ?>"></i>
@@ -70,6 +74,9 @@
                 </div>
               </li>
             <?php endforeach; ?>
+            <?php else:?>
+              <span class="no-task">There is no Task here ...</span>
+            <?php endif; ?>
             <!-- <li><i class="fa fa-square-o"></i><span>Design a new logo</span>
               <div class="info">
                 <div class="button">Pending</div><span>Complete by 10/04/2014</span>

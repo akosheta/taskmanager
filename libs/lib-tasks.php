@@ -9,14 +9,17 @@ function removeTask(int $taskId){
     return $stmt->rowCount();
 }
 
-
-
 function getTasks(){
     global $pdo;
+    $folderId = $_GET["folder_id"] ?? null;
+    $folderCondition = "";
+    if (isset($folderId) && is_numeric($folderId)) {
+        $folderCondition = "AND folder_id = $folderId";
+    }
     $userId = getCurrentUserId();
-    $sql = "SELECT * FROM tasks WHERE user_id = $userId";
+    $sql = "SELECT * FROM tasks WHERE user_id = :userId $folderCondition";
     $stmt = $pdo->prepare($sql);
-    $stmt->execute();
+    $stmt->execute([":userId" => $userId]);
     $records = $stmt->fetchAll(PDO::FETCH_OBJ);
     return $records;
 }
