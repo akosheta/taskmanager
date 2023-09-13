@@ -142,14 +142,14 @@
         let btn_add = task_window.querySelector('.btn-outline-success');
         let succes = task_window.querySelector('.succes');
 
-        // btn_add.addEventListener('click' , function() {
-        //     succes.classList.toggle('select')
-        //     setTimeout(() => {
-        //         task_window.classList.remove('active');    
-        //         button_add_task.style.display = 'block';
-        //         console.log('successfully added')
-        //     } , 2000)
-        // })
+        btn_add.addEventListener('click' , function() {
+            succes.classList.toggle('select')
+          // setTimeout(() => {
+          //       task_window.classList.remove('active');    
+          //       button_add_task.style.display = 'block';
+          //       console.log('successfully added')
+          //   } , 2000)
+        })
         btn_close.addEventListener('click' , () => {
             task_window.classList.remove('active');
             button_add_task.style.display = 'block';
@@ -162,23 +162,20 @@
 
     </script>
     <script>
-        // const regex = /q=([^&#]*)/;
-        // const matched = location.search.match(regex);
-        // var folderId = matched[1].valueOf();
-      $(document).ready(function(){ 
+        const queryParams = new URLSearchParams(window.location.search);
+        const keyword = queryParams.toString(); 
+        console.log(keyword);
+      $(document).ready(function(){
         $("#add-new-task").click(function(e){
           var taskTitle = $("#input-text");
           var taskBody = $("#text-content");
+          // alert(keyword);
           $.ajax({
             url : "../proccess/ajaxHandler.php",
             method : "POST",
-            data : {action: "addtask" , title : taskTitle.val(), body : taskBody.val()},
+            data : {action: "addtask" , title : taskTitle.val(), body : taskBody.val() ,keyword},
             success : function(response){
-              if (response == "1") {
-                $('<li class="<?= $task->is_done ? 'checked' : '' ; ?>"> <i class="<?= $task->is_done ? 'fa fa-check-square-o': 'fa fa-square-o'; ?>"></i> <span class="task-title">'+taskTitle.val()+'</span> <span class="task-body">'+taskBody.val()+'</span><div class="info">'+'<div class="<?= $task->is_done ? 'button green' : 'button'; ?> "><?= $task->is_done ? 'Completed' : 'Pending';  ?></div> <span><?=$task->is_done ? "Complete by $task->end_at": "Created at $task->created_at" ; ?></span> </div> <div class="delete-task"> <a href="?delete_task= ><i class="fa fa-trash-o"></i></a> </div> </li>').appendTo("ul.task-list");
-              } else {
-                alert(response);
-              }
+                $('<li class=""> <i class=""></i> <span class="task-title">'+taskTitle.val()+'</span> <span class="task-body">'+taskBody.val()+'</span><div class="info">'+'<div class=""></div> <span></span> </div> <div class="delete-task"> <a href="?delete_task= ><i class="fa fa-trash-o"></i></a> </div> </li>').appendTo("ul.task-list");
             }
           });
         });

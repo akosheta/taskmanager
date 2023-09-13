@@ -27,12 +27,6 @@ function getTasks(){
 function addTask(string $taskTitle , string $taskBody , int $folderId){
     global $pdo;
     $userId = getCurrentUserId();
-    // if(!isset($_GET["folder_id"]) && !is_numeric($_GET["folder_id"])){
-    //     echo "Invalid Action!";
-    //     die();
-    // }
-    // echo $taskTitle . $taskTitle;
-    // $folderId = $_GET["folder_id"];
     $sql = "INSERT INTO tasks (title,body,user_id,folder_id) VALUES (:title,:body,:userId,:folderId)";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([":title" => "$taskTitle" ,":body" => "$taskBody" ,":userId" => $userId,":folderId" => $folderId]);

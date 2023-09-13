@@ -21,10 +21,10 @@ switch($_POST["action"]){
             echo "The Task title must have at least 2 charachter";
             die();
         }
-        // var_dump($_POST);
-        // $folderId = $_GET["folder_id"];
-        echo addTask($_POST["title"], $_POST["body"], $folderId);
-        break;
+        $currentFolderId = explode("=", $_POST["keyword"]);
+        $folderId = (int)($currentFolderId[1]);
+        addTask($_POST["title"], $_POST["body"], $folderId);
+    break;
     default:
         diepage("Invalid Action!");
 }
