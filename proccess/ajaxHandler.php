@@ -2,21 +2,29 @@
 
 include "../bootstrap/init.php";
 if(!isAjaxRequest()){
-    echo diepage("Invalid Request!");
+    diepage("Invalid Request!");
 }
 if (!isset($_POST["action"]) || empty($_POST["action"])) {
-    echo diepage("Invalid Action!");
+    diepage("Invalid Action!");
 }
 
 switch($_POST["action"]){
     case "addfolder":
         if (!isset($_POST["input"]) || strlen($_POST["input"]) <2) {
-            echo "The folder name must have at least 3 charachter";
+            echo "The folder name must have at least 2 charachter";
             die();
         }
         echo addFolder($_POST["input"]);
     break;
-    
+    case "addtask":
+        if (!isset($_POST["title"]) || strlen($_POST["title"]) <2) {
+            echo "The Task title must have at least 2 charachter";
+            die();
+        }
+        // var_dump($_POST);
+        // $folderId = $_GET["folder_id"];
+        echo addTask($_POST["title"], $_POST["body"], $folderId);
+        break;
     default:
         diepage("Invalid Action!");
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <title><?=SITE_TITLE?></title>
@@ -32,7 +32,6 @@
             <a href="?delete_folder=<?= $folder->id ?>" class="folder-delete" onclick="return confirm('Are you sure to delete <?= $folder->name ?> folder and all tasks related?')"><i class="fa fa-trash-o"></i></a>
           </li>
           <?php endforeach; ?>
-          
           <!-- <li> <i class="fa fa-folder"></i>Folder</li> -->
         </ul>
       </div>
@@ -55,25 +54,40 @@
       <div class="content">
         <div class="list">
           <div class="title"><?= isset($_GET["folder_id"]) ? "Tasks" : "All tasks" ; ?></div>
-          <div class="functions">
-            <div class="button active">Add New Task</div>
+          <div>
+            <!-- <button class="button active">Add New Task</button> -->
+            <?php if(isset($_GET["folder_id"])): ?>
+            <div class="container">
+                <button id="add-task">Add New Tasks</button>
+              <div  class="window-task">
+                <h2 class="title-window">New Task</h2>
+                <input type="text" name="title-text" id="input-text" placeholder="Title">
+                <textarea name="content" id="text-content" cols="30" rows="10" placeholder="Task description"></textarea>
+                <div class="button-group">
+                    <button type="button" class="btn btn-outline-success" id="add-new-task">Add</button>
+                    <button type="button" class="btn btn-outline-danger">Close</button>
+                </div>
+                      <span class="succes">Added successfully</span>
+              </div>
+            </div>
           </div>
-          <ul>
+          <?php endif; ?>
+          <ul class="task-list">
             <?php if(sizeof($tasks)): ?>
-            <?php foreach($tasks as $task): ?>
-              <li class="<?= $task->is_done ? 'checked' : '' ; ?>">
-                <i class="<?= $task->is_done ? 'fa fa-check-square-o': 'fa fa-square-o'; ?>"></i>
-                <span class="task-title"><?= $task->title ?></span>
-                <span class="task-body"><?= $task->body ?></span>
-                <div class="info">
-                  <div class="<?= $task->is_done ? 'button green' : 'button'; ?> "><?= $task->is_done ? 'Completed' : 'Pending';  ?></div>
-                  <span><?=$task->is_done ? "Complete by $task->end_at": "Created at $task->created_at" ; ?></span>
-                </div>
-                <div class="delete-task">
-                  <a href="?delete_task=<?= $task->id ?>" onclick="return confirm('Are you sure to delete this task?\n<?= $task->title ?>')"><i class="fa fa-trash-o"></i></a>
-                </div>
-              </li>
-            <?php endforeach; ?>
+              <?php foreach($tasks as $task): ?>
+                <li class="<?= $task->is_done ? 'checked' : '' ; ?>">
+                  <i class="<?= $task->is_done ? 'fa fa-check-square-o': 'fa fa-square-o'; ?>"></i>
+                  <span class="task-title"><?= $task->title ?></span>
+                  <span class="task-body"><?= $task->body ?></span>
+                  <div class="info">
+                    <div class="<?= $task->is_done ? 'button green' : 'button'; ?> "><?= $task->is_done ? 'Completed' : 'Pending';  ?></div>
+                    <span><?=$task->is_done ? "Complete by $task->end_at": "Created at $task->created_at" ; ?></span>
+                  </div>
+                  <div class="delete-task">
+                    <a href="?delete_task=<?= $task->id ?>" onclick="return confirm('Are you sure to delete this task?\n<?= $task->title ?>')"><i class="fa fa-trash-o"></i></a>
+                  </div>
+                </li>
+              <?php endforeach; ?>
             <?php else:?>
               <span class="no-task">There is no Task here ...</span>
             <?php endif; ?>
@@ -121,5 +135,55 @@
       });
     });
   </script>
+  <script>
+        const button_add_task = document.getElementById('add-task');
+        const task_window = document.querySelector('.window-task');
+        let btn_close = task_window.querySelector('.btn-outline-danger');
+        let btn_add = task_window.querySelector('.btn-outline-success');
+        let succes = task_window.querySelector('.succes');
+
+        // btn_add.addEventListener('click' , function() {
+        //     succes.classList.toggle('select')
+        //     setTimeout(() => {
+        //         task_window.classList.remove('active');    
+        //         button_add_task.style.display = 'block';
+        //         console.log('successfully added')
+        //     } , 2000)
+        // })
+        btn_close.addEventListener('click' , () => {
+            task_window.classList.remove('active');
+            button_add_task.style.display = 'block';
+            succes.classList.remove('select');
+        })
+        button_add_task.addEventListener('click' , () => {
+            task_window.classList.toggle('active');
+            button_add_task.style.display = 'none';
+        }) 
+
+    </script>
+    <script>
+        // const regex = /q=([^&#]*)/;
+        // const matched = location.search.match(regex);
+        // var folderId = matched[1].valueOf();
+      $(document).ready(function(){ 
+        $("#add-new-task").click(function(e){
+          var taskTitle = $("#input-text");
+          var taskBody = $("#text-content");
+          $.ajax({
+            url : "../proccess/ajaxHandler.php",
+            method : "POST",
+            data : {action: "addtask" , title : taskTitle.val(), body : taskBody.val()},
+            success : function(response){
+              if (response == "1") {
+                $('<li class="<?= $task->is_done ? 'checked' : '' ; ?>"> <i class="<?= $task->is_done ? 'fa fa-check-square-o': 'fa fa-square-o'; ?>"></i> <span class="task-title">'+taskTitle.val()+'</span> <span class="task-body">'+taskBody.val()+'</span><div class="info">'+'<div class="<?= $task->is_done ? 'button green' : 'button'; ?> "><?= $task->is_done ? 'Completed' : 'Pending';  ?></div> <span><?=$task->is_done ? "Complete by $task->end_at": "Created at $task->created_at" ; ?></span> </div> <div class="delete-task"> <a href="?delete_task= ><i class="fa fa-trash-o"></i></a> </div> </li>').appendTo("ul.task-list");
+              } else {
+                alert(response);
+              }
+            }
+          });
+        });
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -180,7 +180,7 @@ body {
 .main .view .functions .button {
   font-size: 20px;
   float: right;
-  height: 30px;
+  height: 40px;
   line-height: 28px;
   background-color: #AAA;
   -moz-border-radius: 4px;
@@ -191,9 +191,13 @@ body {
   cursor: pointer;
   color: White;
   font-weight: 700;
+  border: none;
+}
+.button.active:hover{
+  background-color: #62d256;
 }
 .main .view .functions .button.active {
-  background-color: #7273b2;
+  background-color: #717182;
 }
 .main .view .functions .button.inverz {
   background-color: inherit;
@@ -263,6 +267,7 @@ body {
   font-weight: 600;
 }
 .main .content .list ul li .info {
+  position: sticky;
   background-color: #fff7ec;
   float: right;
   border: 1px solid #ccc;
@@ -431,4 +436,121 @@ span.no-task {
   font-size: 21px;
   font-weight: 500;
   margin: 39px;
+}
+* {
+  /* padding: 0; */
+  /* margin: 0; */
+}
+.container {
+  /* float: right; */
+  position: relative;
+  right: -1179px;
+  bottom: 30px;
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+  /* height: 100vh; */
+  flex-direction: row;
+  align-content: stretch;
+  /* bottom: 37px; */
+}
+#add-task {
+  background-color: #54b9cd;
+  color: white;
+  font-size: medium;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  transition: all .5s;
+}
+#add-task:hover {
+  color: white;
+  background-color: #62d256;
+}
+.title-window {
+  font-weight: 200;
+  font-family: sans-serif;
+  align-self: center;
+  margin-bottom: 3rem;
+  color: gray;
+}
+.button-group {
+  display: flex;
+  justify-content: center;
+}
+.btn {
+  margin: .3rem;
+}
+.window-task {
+  font-family: serif;
+  position: absolute;
+  right: 1554px;
+  /* left: auto; */
+  width: 43%;
+  flex-direction: column;
+  background-color: aliceblue;
+  padding: 2rem;
+  border-radius: 6px;
+  box-shadow: 5px 5px 6px rgb(159, 159, 159);
+  display: none;
+  animation: anime .7s ease;
+}
+div.active {
+  display: flex;
+}
+@keyframes anime {
+  0% {
+      transform: scaleX(0);
+      transform-origin: left;
+  }
+  100% {
+      transform: scaleX(1);
+      transform-origin: right;
+  }
+}
+.succes {
+  border: 1px solid green;
+  background-color: rgb(135, 224, 135);
+  display: none;
+  /* width: 50%; */
+  margin: auto;
+  padding: .8rem;
+  border-radius: 6px;
+  justify-content: center;
+  animation: anime2 .3s ease-in;
+}
+.select {
+  display: flex;
+}
+@keyframes anime2 {
+  0% {
+      /* transform: scale(.9); */
+      opacity: 0;
+  }
+  100% {
+      /* transform: scale(1); */
+      opacity: 1;
+  }
+}
+#text-content {
+  margin: .5rem;
+  padding: .7rem;
+  border-radius : 6px;
+  outline: none;
+  border: none;
+  text-decoration: none;
+}
+#text-content::placeholder {
+  opacity: .6;
+}
+#input-text {
+  margin: .5rem;
+  padding: .7rem;
+  border-radius : 6px;
+  outline: none;
+  border: none;
+}
+#input-text::placeholder {
+  opacity: .6;
 }
