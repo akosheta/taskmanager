@@ -25,7 +25,12 @@ switch($_POST["action"]){
         $folderId = (int)($currentFolderId[1]);
         addTask($_POST["title"], $_POST["body"], $folderId);
     break;
+    case "updateTask":
+        $taskId = $_POST["taskId"];
+        // $endAt = getCurrentTask($taskId);
+        // print_r($endAt);
+        echo taskDone($taskId);
+        break;
     default:
         diepage("Invalid Action!");
 }
-// var_dump($_POST);

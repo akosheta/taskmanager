@@ -32,3 +32,12 @@ function addTask(string $taskTitle , string $taskBody , int $folderId){
     $stmt->execute([":title" => "$taskTitle" ,":body" => "$taskBody" ,":userId" => $userId,":folderId" => $folderId]);
     return $stmt->rowCount();
 }
+
+function taskDone(int $taskId){
+    global $pdo;
+    $userId = getCurrentUserId();
+    $sql1 = "UPDATE tasks SET is_done = 1 - is_done , end_at = current_timestamp()  WHERE user_id = :userId AND id = :taskId";
+    $stmt = $pdo->prepare($sql1);
+    $stmt->execute([":taskId" => $taskId , ":userId" => $userId ]);
+    return  $stmt->rowCount();
+}

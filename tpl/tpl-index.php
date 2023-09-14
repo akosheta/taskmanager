@@ -76,12 +76,12 @@
             <?php if(sizeof($tasks)): ?>
               <?php foreach($tasks as $task): ?>
                 <li class="<?= $task->is_done ? 'checked' : '' ; ?>">
-                  <i class="<?= $task->is_done ? 'fa fa-check-square-o': 'fa fa-square-o'; ?>"></i>
+                  <i  data-taskId="<?= $task->id ?>" id="clickable" class="isDone <?= $task->is_done ? 'fa fa-check-square-o': 'fa fa-square-o'; ?>"></i>
                   <span class="task-title"><?= $task->title ?></span>
                   <span class="task-body"><?= $task->body ?></span>
                   <div class="info">
                     <div class="<?= $task->is_done ? 'button green' : 'button'; ?> "><?= $task->is_done ? 'Completed' : 'Pending';  ?></div>
-                    <span><?=$task->is_done ? "Complete by $task->end_at": "Created at $task->created_at" ; ?></span>
+                    <span><?=$task->is_done ? "Complete by $task->end_at" : "Created at $task->created_at" ; ?></span>
                   </div>
                   <div class="delete-task">
                     <a href="?delete_task=<?= $task->id ?>" onclick="return confirm('Are you sure to delete this task?\n<?= $task->title ?>')"><i class="fa fa-trash-o"></i></a>
@@ -175,12 +175,34 @@
             method : "POST",
             data : {action: "addtask" , title : taskTitle.val(), body : taskBody.val() ,keyword},
             success : function(response){
-                $('<li class=""> <i class=""></i> <span class="task-title">'+taskTitle.val()+'</span> <span class="task-body">'+taskBody.val()+'</span><div class="info">'+'<div class=""></div> <span></span> </div> <div class="delete-task"> <a href="?delete_task= ><i class="fa fa-trash-o"></i></a> </div> </li>').appendTo("ul.task-list");
+                $('<li class=""> <i class="fa fa-square-o"></i> <span class="task-title">'+taskTitle.val()+'</span> <span class="task-body">'+taskBody.val()+'</span><div class="info">'+'<div class=""></div> <span></span> </div> <div class="delete-task"> <a href="?delete_task= ><i class="fa fa-trash-o"></i></a> </div> </li>').appendTo("ul.task-list");
+                location.reload();
             }
           });
         });
       });
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <Script>
+      $(document).ready(function(){
+        $("i.isDone").click(function(e){
+          var currentTaskId = $(this).attr("data-taskId");
+          // alert(endAt);
+          $.ajax({
+            url : "../proccess/ajaxHandler.php",
+            method : "POST",
+            data : {action : "updateTask" ,taskId : currentTaskId},
+            success : function(response){
+              if(response == "1"){
+                location.reload();
+              } else {
+                alert(response);
+              }
+            }
+          });
+        });
+      });
+    </Script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
+    </script>
 </body>
 </html>
