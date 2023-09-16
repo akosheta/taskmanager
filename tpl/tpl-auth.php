@@ -170,7 +170,7 @@
         }
         .auth-form:nth-child(1) input {
         width: 100%;
-        margin: 20px 0;
+        margin: 8px 0;
         }
         .auth-form:nth-child(1) input:focus {
         border: solid #F8CB98;
@@ -192,7 +192,7 @@
         }
         .auth-form:nth-child(2) input {
         width: 100%;
-        margin: 20px 0;
+        margin: 8px 0;
         }
         .auth-form:nth-child(2) input:focus {
         border: solid #AE94DE;
