@@ -1,10 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Dosis:300|Lato:300,400,600,700|Roboto+Condensed:300,700|Open+Sans+Condensed:300,600|Open+Sans:400,300,600,700|Maven+Pro:400,700");
 @import url("https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
 /* @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"); */
-html {
-  /* background-image: url("../img/background.webp");
-  background-size: cover; */
-}
 
 body {
   padding: 0px;
@@ -242,13 +238,6 @@ body {
   list-style: none;
   margin-top: 3px;
   /* border-top: 1px solid #AAA; */
-}
-.main .view .content .list ul li.checked {
-  /* background-color: #F0F4F5; */
-  /* float: left; */
-}
-.main .view .content .list ul li:last-child {
-  /* border-bottom: 1px solid #AAA; */
 }
 .main .content .list .fa-check-square-o .fa-square-o ul li  {
   float: left;
@@ -558,4 +547,8 @@ div.active {
 #clickable:hover{
   cursor: pointer;
   font-weight: 700;
+}
+a.sign-out {
+  color: azure;
+  font-size: 25px;
 }

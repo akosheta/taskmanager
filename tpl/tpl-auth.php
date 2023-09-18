@@ -209,8 +209,8 @@
         height: 100%;
         left: 0;
         top: 0;
-        background: url("https://images.unsplash.com/photo-1512805147242-c3e79caf64bf?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ");
-        background-size: auto 100%;
+        /* background:url("../assets/img/Background-auth.jpg"); */
+        background-size: auto;
         background-position: center center;
         background-repeat: no-repeat;
         }

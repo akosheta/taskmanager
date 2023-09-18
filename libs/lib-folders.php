@@ -2,7 +2,10 @@
 
 function getCurrentUserId() 
 {
-    return 1;
+    if (isset($_SESSION["login"])) {
+        return (int)$_SESSION["login"]->id;
+    }
+    return false;
 }
 
 function getFolders()

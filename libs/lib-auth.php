@@ -1,15 +1,12 @@
 <?php defined("BASE_PATH") or die("Permission Denied!");
 
-function getUserEmail(string $email){
+function getUserByEmail(string $email){
     global $pdo;
-    $sql = "SELECT email FROM users WHERE email like :email";
+    $sql = "SELECT * FROM users WHERE email like :email";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([":email" => $email]);
     $records = $stmt->fetch(PDO::FETCH_OBJ);
-    return $records;
-}
-function isLoggedIn(){
-    return false;
+    return $records ?? null;
 }
 
 function signUp(array $params){
@@ -22,7 +19,22 @@ function signUp(array $params){
     $stmt->execute([":username" => $userName ,":email" => $email ,":password" => $password]);
     return $stmt->rowCount() ? true : false;
 }
-
-function logIn(){
-    
+function isLoggedIn(){
+    return isset($_SESSION["login"]) ? true : false;
+}
+function logIn(array $params){
+    $email = $params["email"];
+    $password = $params["password"];
+    $user = getUserByEmail($email);
+    if (is_null($user)) {
+        return false;
+    }
+    if(password_verify($password,$user->password)){
+        $_SESSION["login"] = $user;
+        return true;
+    }
+    return false;
+}
+function logout() {
+    unset($_SESSION["login"]);
 }

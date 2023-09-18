@@ -10,7 +10,10 @@
 <div class="page">
   <div class="pageHeader">
     <div class="title">Dashboard</div>
-    <div class="userPanel"><i class="fa fa-chevron-down"></i><span class="username">akosheta</span>
+    <div class="userPanel">
+    <a href="<?='?logout=1'?>" class="sign-out" onclick="return confirm('Are you sure to log out?')">
+    <i id="clickable" class="fa fa-sign-out"></i></a>
+    <span class="username"><?=$_SESSION["login"]->user_name ?></span>
     <img src="../assets/img/profile.jpg" width="40" height="40"/></div>
   </div>
   <div class="main">
@@ -126,7 +129,8 @@
           data: {action: "addfolder" ,input: newFolderinput.val()},
           success: function(response){
             if (response == "1") {
-              $('<li><a href="?folder_id=<?=$folder->id?>" class="folder-a"><i class="fa fa-folder"></i>'+newFolderinput.val()+'</a><a href="?delete_folder=<?=$folder->id?>" class="folder-delete"><i class="fa fa-trash-o"></i></a></li>').appendTo("ul.folder-list");
+              $('<li><a href="?folder_id=" class="folder-a"><i class="fa fa-folder"></i>'+newFolderinput.val()+'</a><a href="?delete_folder=" class="folder-delete"><i class="fa fa-trash-o"></i></a></li>').appendTo("ul.folder-list");
+              location.reload();
             }else{
               alert(response);
             }
